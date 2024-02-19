@@ -12,6 +12,7 @@ General information about the API
 
 ### Base URL
 - **URL**: `http://localhost:8080`
+- **URL Test**: `http://localhost:8080/products?merchantId=string`
 
 #### Get Products
 - **URL**: `/products`
