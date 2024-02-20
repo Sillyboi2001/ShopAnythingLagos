@@ -9,23 +9,6 @@ import (
 	"github.com/google/uuid"
 )
 
-// @title Swagger  demo service API
-// @version 1.0
-// @description This is demo server.
-// @termsOfService demo.com
-
-// @contact.name API Support
-// @contact.url http://demo.com/support
-
-// @host localhost:8091
-// @BasePath /api/v1
-
-// @securityDefinitions.basic BasicAuth
-
-// @securityDefinitions.apikey ApiKeyAuth
-// @in header
-// @name Authorization
-
 type Product struct {
   ID string `json:"id"`
   NAME string `json:"name"`
