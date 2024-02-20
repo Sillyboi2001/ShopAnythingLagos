@@ -4,15 +4,33 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-  "github.com/google/uuid"
+	"github.com/google/uuid"
 )
+
+// @title Swagger  demo service API
+// @version 1.0
+// @description This is demo server.
+// @termsOfService demo.com
+
+// @contact.name API Support
+// @contact.url http://demo.com/support
+
+// @host localhost:8091
+// @BasePath /api/v1
+
+// @securityDefinitions.basic BasicAuth
+
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
 
 type Product struct {
   ID string `json:"id"`
   NAME string `json:"name"`
   DESCRIPTION string `json:"description"`
-  PRICE int `json:"price"`
+  PRICE float64 `json:"price"`
   MERCHANTID string `json:"merchantId"`
   DATE time.Time `json:"date"`
 }
@@ -127,7 +145,12 @@ func deleteProduct(c *gin.Context) {
 
 func main() {
   router := gin.Default()
-  router.GET("/products", getProducts)
+  router.Use(cors.Default())
+
+  //API documentation routes
+  router.Static("/api/docs", "./assets")
+  //API requests routes
+  router.GET("products", getProducts)
   router.GET("/products/:id", getProductById)
   router.POST("/products", createProduct)
   router.PATCH("/products/:id", updateProduct)

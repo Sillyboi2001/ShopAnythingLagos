@@ -1,0 +1,212 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ShopAnythingLagos API Documentation",
+    "description": "# Description\n\nThis API is designed for product management within a marketplace platform, tailored specifically for use by merchants. It allows for the creation, retrieval, updating, and deletion of product information. Each product is uniquely identified by an ID and is associated with a specific merchant, ensuring data isolation and security between different merchant accounts.",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "paths": {
+    "/products": {
+      "post": {
+        "summary": "Create product",
+        "description": "Creates a product.",
+        "operationId": "createProduct",
+        "parameters": [
+          {
+            "name": "merchantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "example": "Front of men's Basic Tee in black"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Basic Tee"
+                  },
+                  "price": {
+                    "type": "float64",
+                    "example": 35.5
+                  }
+                }
+              },
+              "examples": {
+                "Create product": {
+                  "value": {
+                    "description": "Front of men's Basic Tee in black",
+                    "name": "Basic Tee",
+                    "price": 35.5
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Product created"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get all products",
+        "description": "Gets a list of all products.",
+        "operationId": "getAllProducts",
+        "parameters": [
+          {
+            "name": "merchantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "summary": "Get product by ID",
+        "description": "Gets a product by its ID.",
+        "operationId": "getProductById",
+        "parameters": [
+          {
+            "name": "merchantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update product",
+        "description": "Updates a product by its ID.",
+        "operationId": "updateProduct",
+        "parameters": [
+          {
+            "name": "merchantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "example": "Front of men's Basic Tee in white"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Basic Tee"
+                  },
+                  "price": {
+                    "type": "float64",
+                    "example": 25
+                  }
+                }
+              },
+              "examples": {
+                "Update product": {
+                  "value": {
+                    "name": "Basic Tee",
+                    "description": "Front of men's Basic Tee in white",
+                    "price": 25
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete product",
+        "description": "Deletes a product by its ID.",
+        "operationId": "deleteProduct",
+        "parameters": [
+          {
+            "name": "merchantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": ""
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": []
+}
